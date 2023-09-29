@@ -151,7 +151,7 @@ class QuickKeyApp(tk.Tk):
         self.title('QuickKey')
         # Process related variables
         self.process = None
-        self.iconbitmap('assets/quick_key.ico')
+        self.iconbitmap('quickkey/quick_key.ico')
         self.credit_label_1 = tk.Label(self, text="QuickKey by Jason Wang", font=('Tahoma', 11, "bold"), fg='white', bg='#1f2f47')
         self.credit_label_1.pack(expand=True, fill=tk.BOTH)
         self.credit_label_2 = tk.Label(self, text="@chungchunwang on GitHub", font=('Tahoma', 11, "bold"), fg='white', bg='#1f2f47')
@@ -179,7 +179,7 @@ def start():
     def hide_to_menu():
         app.withdraw()
         menu=(pystray.MenuItem('Show', show_from_menu), pystray.MenuItem('Quit', quit_app))
-        image=Image.open("assets/quick_key.ico")
+        image=Image.open("quickkey/quick_key.ico")
         icon=pystray.Icon("name",image,"QuickKey", menu)
         icon.run()
 
