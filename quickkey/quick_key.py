@@ -151,11 +151,12 @@ class QuickKeyApp(tk.Tk):
         self.title('QuickKey')
         # Process related variables
         self.process = None
-        self.iconbitmap('./quick_key.ico')
+        self.iconbitmap('assets/quick_key.ico')
         self.credit_label_1 = tk.Label(self, text="QuickKey by Jason Wang", font=('Tahoma', 11, "bold"), fg='white', bg='#1f2f47')
         self.credit_label_1.pack(expand=True, fill=tk.BOTH)
         self.credit_label_2 = tk.Label(self, text="@chungchunwang on GitHub", font=('Tahoma', 11, "bold"), fg='white', bg='#1f2f47')
         self.credit_label_2.pack(expand=True, fill=tk.BOTH)
+        self.toggle_process()
 
     def toggle_process(self):
         if self.process and self.process.is_alive():
@@ -166,7 +167,7 @@ class QuickKeyApp(tk.Tk):
             self.process = Process(target=worker)
             self.process.start()
             self.start_stop_btn.config(text="Stop")
-if __name__ == "__main__":
+def start():
     app = QuickKeyApp()
     def quit_app(icon, _):
         icon.stop()
@@ -178,9 +179,12 @@ if __name__ == "__main__":
     def hide_to_menu():
         app.withdraw()
         menu=(pystray.MenuItem('Show', show_from_menu), pystray.MenuItem('Quit', quit_app))
-        image=Image.open("./quick_key.ico")
+        image=Image.open("assets/quick_key.ico")
         icon=pystray.Icon("name",image,"QuickKey", menu)
         icon.run()
 
     app.protocol('WM_DELETE_WINDOW', hide_to_menu)
     app.mainloop()
+
+if __name__ == "__main__":
+    start()
